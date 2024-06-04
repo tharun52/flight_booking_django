@@ -1,0 +1,16 @@
+{% extends 'bookings/layout.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Booking Confirmation</h1>
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text">Your flight from <strong>{{ flight.source }}</strong> to <strong>{{ flight.destination }}</strong> has been booked.</p>
+            <p class="card-text">Number of Seats: <strong>{{ seats }}</strong></p>
+            <p class="card-text">Total Price: <strong>{{ total_price }}</strong></p>
+            <a href="{% url 'bookings:available_flights' %}" class="btn btn-primary">Back to Available Flights</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+    

@@ -1,0 +1,27 @@
+{% extends 'bookings/layout.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Available Flights</h1>
+    <a href="{% url 'bookings:search_flights' %}" class="btn btn-primary">Search Flights</a>
+  </div>
+
+  {% if flights %}
+    <ul class="list-group">
+        {% for flight in flights %}
+        <li class="list-group-item">
+            <strong>{{ flight.source }}</strong> to <strong>{{ flight.destination }}</strong> - {{ flight.take_off_timing }}
+            <a href="{% url 'bookings:book_flight' flight.id %}" class="btn btn-primary btn-sm ml-2">Book</a>
+        </li>
+        {% endfor %}
+    </ul>  
+  {% else %}
+    <div class="alert alert-info" role="alert">
+        No Flights Available! Please try searching for flights again.
+    </div>
+  {% endif %}
+
+  <a href="{% url 'bookings:booked_flights' %}" class="btn btn-secondary mt-3">View Booked Flights</a>
+</div>
+{% endblock %}

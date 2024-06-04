@@ -1,0 +1,17 @@
+{% extends 'bookings/layout.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Your Booked Flights</h1>
+    <ul class="list-group">
+        {% for booking in bookings %}
+            <li class="list-group-item">
+                <strong>{{ booking.flight_schedule.source }}</strong> to <strong>{{ booking.flight_schedule.destination }}</strong> - {{ booking.flight_schedule.take_off_timing }}
+                <p>Seats Booked: {{ booking.seats_booked }}</p>
+                <a href="{% url 'bookings:cancel_booking' booking.id %}" class="btn btn-danger btn-sm">Cancel Booking</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'bookings:available_flights' %}" class="btn btn-secondary mt-3">Back to Available Flights</a>
+</div>
+{% endblock %}
